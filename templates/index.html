@@ -16,6 +16,16 @@
       </style>
   </head>
   <body>
+    {% if messages %}
+<ul class="messages w-100">
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}} {% if "error" in message.tags %}alert-danger{% endif %} alert-dismissible fade show" role="alert">
+     <strong> {{ message }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
     {% block content %}{% endblock content %}
     <!-- Optional JavaScript; choose one of the two! -->
 

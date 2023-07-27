@@ -1,0 +1,28 @@
+{% extends 'index.html' %}
+{% block title %}
+Blog
+{% endblock title %}
+{% block style %}
+body{
+    background-color:  black;
+    height:100vh;
+    width:100vw;
+}
+{% endblock style %}
+
+{% block content %}
+
+<div class="container d-flex vh-100 align-items-center">
+<div class="p-4 p-md-5 mb-4 text-white w-100 rounded bg-secondary">
+    <div class="col-md-12 px-0 text-center">
+      <h1 class="display-4 fst-italic "> {{Post.title}}</h1>
+      <p class="lead my-3">{{Post.desc}}</p>
+      <p> By: {{Post.name}}</p>
+      <p> Published On: {{Post.date}}</p>
+      <p class="lead mb-0"><a href="/blog" class="text-white fw-bold">Go Back to home</a></p>
+    </div>
+
+
+  </div>
+</div>
+{% endblock content %}

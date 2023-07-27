@@ -18,7 +18,12 @@ from django.contrib import admin
 from django.urls import path,include
 from . import views
 urlpatterns = [
-    path('',views.index,name="home"),
-    path('login',views.login,name="login"),
-
+    path('',views.login,name="login"),
+    path('login/',views.login,name="login"),
+    path('blog/<int:id>/',views.viewpost,name="viewpost"),
+    path('blog/edit/<int:id>/',views.editpost,name="editpost"),
+    path('blog/',views.index,name="blogs"),
+    path('blog/add/',views.addblog,name="add"),
+    path('logout/',views.logoutblog,name="logout"),
+    path('signup/', views.signup, name='signup'),
 ]

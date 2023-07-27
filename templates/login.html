@@ -1,85 +1,59 @@
 {% extends 'index.html' %}
-{% block style %}
-html,
-body {
-  height: 100%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #f5f5f5;
-}
-
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
-}
-
-.form-signin .form-floating:focus-within {
-  z-index: 2;
-}
-
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-        .bd-placeholder-img {
-          font-size: 1.125rem;
-          text-anchor: middle;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          user-select: none;
-        }
-  
-        @media (min-width: 768px) {
-          .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-          }
-        }
-{% endblock style %}
 {% block title %}
 Login
 {% endblock title %}
+{% block style %}
+body{
+  height:100vh;
+  width:100vw;
+  display:flex;
+  justify-content:center;
+  flex-direction:column;
+  background-color: #f8f9fa;
+  {% comment %} background:url(https://devfolio-prod.s3.ap-south-1.amazonaws.com/hackathons/f84eeecaaf474d90906e94df89d8b660/projects/1b365a0c3b884a829e64b2094740a579/1418ed8c-645b-479f-baa6-b3d2d8103b5d.jpeg) {% endcomment %}
+}
+{% endblock style %}
 
 {% block content %}
-<div class="container text-center form-signin">
-<form>
-    <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+<div class="container  d-flex flex-column justify-content-center align-items-center">
+  <h1>Login</h1>
+<form method="post" action="/login/" class="w-50">
+  <!-- Email input -->
+  {% csrf_token %}
+  <div class="form-outline mb-4">
+    <input type="text" id="email" name="email" class="form-control" />
+    <label class="form-label" for="email">Email address</label>
+  </div>
 
-    <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-      <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">Password</label>
+  <!-- Password input -->
+  <div class="form-outline mb-4">
+    <input type="password" name="password" id="form2Example2" class="form-control" />
+    <label class="form-label" for="password">Password</label>
+  </div>
+
+  <!-- 2 column grid layout for inline styling -->
+  {% comment %} <div class="row mb-4">
+    <div class="col d-flex justify-content-center">
+      <!-- Checkbox -->
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+        <label class="form-check-label" for="form2Example31"> Remember me </label>
+      </div>
     </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
+    <div class="col">
+      <!-- Simple link -->
+      <a href="#!">Forgot password?</a>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-  </form>
-    
+  </div> {% endcomment %}
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-success btn-block mb-4">Sign in</button>
+
+  <!-- Register buttons -->
+ <a href="/signup/" class="btn btn-primary btn-block mb-4">Register</a>
+  </div>
+</form>
 </div>
 {% endblock content %}
 

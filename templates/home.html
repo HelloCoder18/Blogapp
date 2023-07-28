@@ -31,9 +31,13 @@ Home
   </section>
 
   <div class="album py-5 bg-light">
-    <div class="container">
+    <div class="container ">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% if not blogs  %}
+        <div class="text-center" style="width:400px"><h5>No Blogs Found</h5></div>
+        
+        {% else %}
         {% for blog in blogs %}
         <div class="col-md-4 ">
           <div class="card overflow-hidden" style="max-height:500px;">
@@ -42,7 +46,8 @@ Home
               <h4 class="card-title">{{blog.title}}</h4>
               <p class="card-text">{{blog.desc}}</p>
               <a href="/blog/{{blog.pk}}" class="btn btn-info zoom mx-1" >View Blog</a>
-            {% if user is True %}<a href="/blog/edit/{{blog.pk}}" class="btn btn-warning zoom" >Edit Blog</a>{% endif %}  
+            {% if user is True %}<a href="/blog/edit/{{blog.pk}}" class="btn btn-warning zoom" >Edit Blog</a>{% endif %} 
+            {% if user is True %}<a href="/blog/delete/{{blog.pk}}" class="bg-danger p-1 rounded mt-3" ><i class="fa fa-solid zoom  fa-trash text-light"></i></a>{% endif %}  
             </div>
             <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
               <div class="date">{{blog.date}}
@@ -59,7 +64,7 @@ Home
         </div>
     
         {% endfor %}
-      
+        {% endif %}
         
    
 

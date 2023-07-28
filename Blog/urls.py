@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from .views import SignupView, LoginView, ViewPostView, EditPostView, AddBlogView, LogoutBlogView,IndexView
+from .views import SignupView, LoginView, ViewPostView, EditPostView, AddBlogView, LogoutBlogView,IndexView,DeleteBlogView
 urlpatterns = [
     path('', LoginView.as_view(), name='login'),
      path('blog/', IndexView.as_view(), name='index'),
@@ -26,6 +26,7 @@ urlpatterns = [
      path('blog/edit/<int:id>/', EditPostView.as_view(), name='editpost'),
     path('blog/add/', AddBlogView.as_view(), name='addblog'),
     path('logout/', LogoutBlogView.as_view(), name='logoutblog'),
+    path('blog/delete/<int:id>/', DeleteBlogView.as_view(), name='deleteblog '),
 
     # path('',views.login,name="login"),
     # path('login/',views.login,name="login"),

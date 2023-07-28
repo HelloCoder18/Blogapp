@@ -49,7 +49,7 @@ body {
 
 <div class="container addblog-container">
   <h2 class="addblog-heading">Edit Blog</h2>
-  <form method="post" action="/blog/edit/{{blog.pk}}" class="w-100">
+  <form method="post" action="/blog/edit/{{blog.pk}}/" class="w-100">
       {% csrf_token %}
       <div class="form-outline mb-4">
           <label class="form-label" for="name">Author's Name</label>

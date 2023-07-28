@@ -138,6 +138,24 @@ class AddBlogView(LoginRequiredMixin, UserPassesTestMixin, View):
         messages.success(request, "Your blog has been added successfully")
         return redirect('/blog')
 
+class DeleteBlogView(LoginRequiredMixin, UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def get(self, request, id):
+        post = Post.objects.filter(id=id).first()
+        if post is None:
+            messages.error(request, "No such blog found")
+            return redirect('/blog')
+        
+        if request.user.username != post.author_id.username and not request.user.is_superuser:
+            messages.error(request, "You are not authorized to delete this blog")
+            return redirect('/blog')
+
+        post.delete()
+        messages.success(request, "Your blog has been deleted successfully")
+        return redirect('/blog')
+
 class LogoutBlogView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)

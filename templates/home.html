@@ -2,14 +2,28 @@
 {% block title %}
 Home
 {% endblock title %}
+ {% block style %}
+ body{
+  background:url('https://images.unsplash.com/photo-1433024730544-5f8e3e2cc6c8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8Y2l0eSxuaWdodHx8fHx8fDE2OTA0ODI5NzY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080')
+ }
+ .zoom {      
+  transition: transform .2s; 
+  cursor:pointer;
+}
+
+.zoom:hover {
+  {% comment %} cursor:pointer; {% endcomment %}
+  transform: scale(1.05);
+}
+ {% endblock style %}
 {% block content %}
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">GoBlogs</h1>
-        <p class="lead text-muted">All you need for blogs on single platform. GoBlogs provide you best services and blog platform in the world</p>
+        <h1 class="fw-light text-white">GoBlogs</h1>
+        <p class="lead  text-muted">All you need for blogs on single platform. GoBlogs provide you best services and blog platform in the world</p>
         <p>
-          <a href="/blog/add/" class="btn btn-primary my-2">Add Blog</a>
+       {% if user is True %}<a href="/blog/add/" class="btn btn-primary my-2">Add Blog</a>{% endif %}   
           <a href="/logout/" class="btn btn-danger my-2">Log out</a>
         </p>
       </div>
@@ -21,24 +35,36 @@ Home
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         {% for blog in blogs %}
-        <div class="col">
-          <div class="card shadow-sm">
-        <p class='text-center'>{{blog.desc}}</p>
-            <div class="card-body d-flex flex-column align-items-center">
-              <p class="card-text">By {{blog.name}}</p>
-              <small class="text-muted">Published on <u>{{blog.date}}</u></small>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <a href="/blog/{{blog.pk}}/" class="btn btn-sm btn-outline-secondary">View</a>
-
-                  <a href="/blog/edit/{{blog.pk}}/" class="btn btn-sm btn-outline-secondary">Edit</a>
-                </div>
+        <div class="col-md-4 ">
+          <div class="card overflow-hidden" style="max-height:500px;">
+            <img class="card-img" style="max-height:280px;" src="https://source.unsplash.com/random/500×300/?technology,computer" alt="Image">
+            <div class="card-body">
+              <h4 class="card-title">{{blog.title}}</h4>
+              <p class="card-text">{{blog.desc}}</p>
+              <a href="/blog/{{blog.pk}}" class="btn btn-info zoom mx-1" >View Blog</a>
+            {% if user is True %}<a href="/blog/edit/{{blog.pk}}" class="btn btn-warning zoom" >Edit Blog</a>{% endif %}  
+            </div>
+            <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+              <div class="date">{{blog.date}}
               </div>
+              <div class="author">
+                <p>By <u>{{blog.name}}</u> </p>
+             </div>
+              <div class="views">
+                 <i class="far fa-eye"></i> {{blog.views}} views
+              </div>
+               
             </div>
           </div>
         </div>
+    
         {% endfor %}
-       
+      
+        
+   
+
+
+
        
       </div>
     </div>

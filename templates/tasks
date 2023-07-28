@@ -1,0 +1,4 @@
+{% comment %} 1) viewcount
+2) postgress
+3) rest api {% endcomment %}
+{% comment %} https://blog.logrocket.com/django-rest-framework-create-api/ {% endcomment %}

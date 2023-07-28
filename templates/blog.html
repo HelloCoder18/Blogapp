@@ -12,17 +12,27 @@ body{
 
 {% block content %}
 
-<div class="container d-flex vh-100 align-items-center">
-<div class="p-4 p-md-5 mb-4 text-white w-100 rounded bg-secondary">
-    <div class="col-md-12 px-0 text-center">
-      <h1 class="display-4 fst-italic "> {{Post.title}}</h1>
-      <p class="lead my-3">{{Post.desc}}</p>
-      <p> By: {{Post.name}}</p>
-      <p> Published On: {{Post.date}}</p>
-      <p class="lead mb-0"><a href="/blog" class="text-white fw-bold">Go Back to home</a></p>
-    </div>
+<div class="container vh-100 d-flex align-items-center ">
 
-
+      <div class="d-flex bg-light overflow-hidden align-items-center" style="max-height:500px;">
+        <img class="card-img w-50" src="https://source.unsplash.com/random/900×700/?technology,computer" alt="Image">
+       <div> <div class="card-body">
+          <h4 class="card-title">{{blog.title}}</h4>
+          <p class="card-text">{{blog.desc}}</p>
+          <p>By {{blog.name}} </p>
+          <a href="/blog" class="btn btn-info zoom" >Home</a>
+        </div>
+        <div class="card-footer text-muted d-flex justify-content-between bg-transparent border-top-0">
+          <div class="date">{{blog.date}}
+          </div>
+          <div class="views">
+             <i class="far fa-eye"></i> {{blog.views}} views
+          </div>
+           
+        </div>
+      </div>
   </div>
 </div>
+
+
 {% endblock content %}

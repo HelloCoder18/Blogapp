@@ -16,14 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from . import views
+from .views import SignupView, LoginView, ViewPostView, EditPostView, AddBlogView, LogoutBlogView,IndexView
 urlpatterns = [
-    path('',views.login,name="login"),
-    path('login/',views.login,name="login"),
-    path('blog/<int:id>/',views.viewpost,name="viewpost"),
-    path('blog/edit/<int:id>/',views.editpost,name="editpost"),
-    path('blog/',views.index,name="blogs"),
-    path('blog/add/',views.addblog,name="add"),
-    path('logout/',views.logoutblog,name="logout"),
-    path('signup/', views.signup, name='signup'),
+    path('', LoginView.as_view(), name='login'),
+     path('blog/', IndexView.as_view(), name='index'),
+ path('signup/', SignupView.as_view(), name='signup'),
+ path('login/', LoginView.as_view(), name='login'),
+    path('blog/<int:id>/', ViewPostView.as_view(), name='viewpost'),
+     path('blog/edit/<int:id>/', EditPostView.as_view(), name='editpost'),
+    path('blog/add/', AddBlogView.as_view(), name='addblog'),
+    path('logout/', LogoutBlogView.as_view(), name='logoutblog'),
+
+    # path('',views.login,name="login"),
+    # path('login/',views.login,name="login"),
+    # path('blog/<int:id>/',views.viewpost,name="viewpost"),
+    # path('blog/edit/<int:id>/',views.editpost,name="editpost"),
+    # path('blog/',views.home.index,name="blogs"),
+    # path('blog/add/',views.addblog,name="add"),
+    # path('logout/',views.logoutblog,name="logout"),
+    # path('signup/', views.signup, name='signup'),
 ]

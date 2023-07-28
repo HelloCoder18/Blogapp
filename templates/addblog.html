@@ -4,20 +4,80 @@
 Add Blog
 {% endblock title %}
 {% block style %}
-body{
-    background-color: #f8f9fa;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
+body {
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
+.addblog-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 8px;
+}
+.addblog-heading {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  color: #333;
+}
+.form-label {
+  font-weight: 500;
+}
+.form-control {
+  border-radius: 6px;
+}
+.addblog-btn {
+  border-radius: 6px;
+}
+.addblog-btn:hover {
+  background-color: #007bff;
+}
+.back-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
 {% endblock style %}
 
 {% block content %}
-<div class="container d-flex flex-column justify-content-center  align-items-center">
+
+<div class="container addblog-container">
+  <h2 class="addblog-heading">Add Blog</h2>
+  <form method="post" action="/blog/add/" class="w-100">
+      {% csrf_token %}
+      <div class="form-outline mb-4">
+          <label class="form-label" for="name">Author's Name</label>
+          <input type="text" id="name" name="name" class="form-control" />
+      </div>
+
+      <div class="form-outline mb-4">
+          <label class="form-label" for="title">Blog Title</label>
+          <input type="text" id="title" name="title" class="form-control" />
+      </div>
+
+      <div class="form-outline mb-4">
+          <label class="form-label" for="desc">Description</label>
+          <textarea class="form-control" id="desc" name="desc" rows="4"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block addblog-btn">Add Blog</button>
+  </form>
+
+  <div class="back-link">
+      <a href="/blog/">Go back to home</a>
+  </div>
+</div>
+
+
+{% comment %} <div class="container d-flex flex-column justify-content-center  align-items-center">
     <h2>Add Blog</h2>
 <form class="w-50" method="post" action="/blog/add/">
     {% csrf_token %}
@@ -44,5 +104,5 @@ body{
     <button type="submit" class="btn btn-primary btn-block ">Send</button>
     <a href="/blog/" class=" text-center">Go back to home</p>
   </form>
-  </div>
+  </div> {% endcomment %}
 {% endblock content %}
